@@ -14,7 +14,7 @@ const ComponentProvider = ({ children }) => {
  const  fetchAccountBalance = async ()=>{
     try{
         const response = await axios.get(`${baseURL}/posts`);
-        console.log(response.data)
+        setCount(response.data)
     }catch(error){
         setError(error)
         console.log(error)
@@ -29,7 +29,7 @@ const ComponentProvider = ({ children }) => {
  const  fetchTransactions = async ()=>{
     try{
         const response = await axios.get(`${baseURL}/posts`);
-        console.log(response.data)
+        setTransactions(response.data)
     }catch(error){
         setError(error)
         console.log(error)
@@ -44,7 +44,7 @@ const ComponentProvider = ({ children }) => {
  const  fetchInvestments = async ()=>{
     try{
         const response = await axios.get(`${baseURL}/posts`);
-        console.log(response.data)
+        setInvest(response.data)
     }catch(error){
         setError(error)
         console.log(error)

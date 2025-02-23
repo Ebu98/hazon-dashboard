@@ -174,6 +174,35 @@ body {
 
 /* End Main  */
 
+body.light {
+  background-color: whitesmoke;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #1d2634;
+  color: #ffffff;
+}
+
+
+.togle-btn {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+body.light .togle-btn {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.dark .togle-btn {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 /* Medium <= 992px */
 
 @media screen and (max-width: 992px) {

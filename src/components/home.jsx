@@ -1,144 +1,127 @@
-import React from 'react'
-import 
-{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill}
- from 'react-icons/bs'
- import 
- { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
- from 'recharts';
+import React from "react";
+import { BsFillArchiveFill, BsFillGrid3X3GapFill } from "react-icons/bs";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 function Home() {
+  const data = [
+    { name: "Stocks", value: 5000 },
+    { name: "Bonds", value: 3000 },
+    { name: "Real Estate", value: 2500 },
+  ];
 
-    const data = [
-        {
-          name: 'Page A',
-          uv: 4000,
-          pv: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Page B',
-          uv: 3000,
-          pv: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Page C',
-          uv: 2000,
-          pv: 9800,
-          amt: 2290,
-        },
-        {
-          name: 'Page D',
-          uv: 2780,
-          pv: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'Page E',
-          uv: 1890,
-          pv: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'Page F',
-          uv: 2390,
-          pv: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'Page G',
-          uv: 3490,
-          pv: 4300,
-          amt: 2100,
-        },
-      ];
-     
+  const transactions = [
+    {
+      id: 1,
+      type: "Credit",
+      amount: 2000,
+      date: "2025-02-15",
+      description: "Deposited for one month",
+    },
+    {
+      id: 2,
+      type: "Debit",
+      amount: 500,
+      date: "2025-02-17",
+      description: "Deposited for one month",
+    },
+    {
+      id: 3,
+      type: "Credit",
+      amount: 3000,
+      date: "2025-02-18",
+      description: "Deposited for one month",
+    },
+  ];
 
   return (
-    <main className='main-container'>
-        <div className='main-title'>
-            <h3>DASHBOARD</h3>
-        </div>
+    <main className="main-container">
+      <div className="main-title">
+        <h3>DASHBOARD</h3>
+      </div>
 
-        <div className='main-cards'>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>PRODUCTS</h3>
-                    <BsFillArchiveFill className='card_icon'/>
-                </div>
-                <h1>300</h1>
-            </div>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>CATEGORIES</h3>
-                    <BsFillGrid3X3GapFill className='card_icon'/>
-                </div>
-                <h1>12</h1>
-            </div>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>CUSTOMERS</h3>
-                    <BsPeopleFill className='card_icon'/>
-                </div>
-                <h1>33</h1>
-            </div>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>ALERTS</h3>
-                    <BsFillBellFill className='card_icon'/>
-                </div>
-                <h1>42</h1>
-            </div>
+      <div className="main-cards">
+        <div className="card">
+          <div className="card-inner">
+            <h3>Account Balance</h3>
+            <BsFillArchiveFill className="card_icon" />
+          </div>
+          <h1>300</h1>
         </div>
+        <div className="card">
+          <div className="card-inner">
+            <h3>Investment Summary</h3>
+            <BsFillGrid3X3GapFill className="card_icon" />
+          </div>
+          <h1>12</h1>
+        </div>
+      </div>
 
-        <div className='charts'>
-            <ResponsiveContainer width="100%" height="100%">
-            <BarChart
+      <div className="charts">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
             width={500}
             height={300}
             data={data}
             margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
             }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="pv" fill="#8884d8" />
-                <Bar dataKey="uv" fill="#82ca9d" />
-                </BarChart>
-            </ResponsiveContainer>
+          >
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="value" fill="#8884d8" />
+            {/* <Bar dataKey="value" fill="#82ca9d" /> */}
+          </BarChart>
+        </ResponsiveContainer>
 
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
-                >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-            </ResponsiveContainer>
+        <div className="card-transaction">
+          <h2> Recent transactions </h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Descritpion</th>
+                <th>Amounts</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((tx) => (
+                <tr key={tx.id} className="">
+                  <td>{tx.date}</td>
+                  <td>{tx.description}</td>
 
+                  <td
+                    className={
+                      tx.type === "Withdrawal"
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }
+                  >
+                    ${tx.amount.toLocaleString()}
+                  </td>
+                  <td>{tx.type}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+      </div>
     </main>
-  )
+  );
 }
 
-export default Home
+export default Home;

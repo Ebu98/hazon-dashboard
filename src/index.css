@@ -67,15 +67,14 @@ button:focus-visible {
   }
 } */
 
-
 /* New */
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #1d2634;
+  /* background-color: #1d2634; */
   color: #9e9ea4;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .icon {
@@ -88,7 +87,8 @@ body {
   line-height: 1px;
   font-size: 26px;
 }
-.icon, .icon_header {
+.icon,
+.icon_header {
   margin-right: 5px;
 }
 
@@ -104,8 +104,8 @@ body {
   grid-template-columns: 260px 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 3fr;
   grid-template-areas:
-    'sidebar header header header'
-    'sidebar main main main';
+    "sidebar header header header"
+    "sidebar main main main";
   height: 100vh;
 }
 
@@ -186,8 +186,7 @@ body {
 
 /* End Sidebar  */
 
-
-/* Main  */  
+/* Main  */
 .main-container {
   grid-area: main;
   overflow-y: auto;
@@ -202,9 +201,9 @@ body {
 
 .main-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin: 15px 0;
+  /* margin: 5px 0; */
 }
 
 .card {
@@ -214,6 +213,15 @@ body {
   padding: 8px 15px;
   border-radius: 5px;
 }
+.card-transaction {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: #f2f6f2;
+  color: #263043;
+}
 
 .card:first-child {
   background-color: #2962ff;
@@ -221,14 +229,6 @@ body {
 
 .card:nth-child(2) {
   background-color: #ff6d00;
-}
-
-.card:nth-child(3) {
-  background-color: #2e7d32;
-}
-
-.card:nth-child(4) {
-  background-color: #d50000;
 }
 
 .card-inner {
@@ -251,16 +251,15 @@ body {
 
 /* End Main  */
 
-
 /* Medium <= 992px */
-  
+
 @media screen and (max-width: 992px) {
   .grid-container {
     grid-template-columns: 1fr;
     grid-template-rows: 0.2fr 3fr;
     grid-template-areas:
-      'header'
-      'main';
+      "header"
+      "main";
   }
 
   #sidebar {
@@ -276,7 +275,7 @@ body {
   }
 }
 /* Small <= 768px */
-  
+
 @media screen and (max-width: 768px) {
   .main-cards {
     grid-template-columns: 1fr;

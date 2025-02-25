@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BsFillBellFill,
   BsFillEnvelopeFill,
@@ -7,8 +7,10 @@ import {
   BsJustify,
 } from "react-icons/bs";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { GlobalContext } from "../context/datacontext";
 
-function Header({ OpenSidebar }) {
+function Header() {
+  const {OpenSidebar} = useContext(GlobalContext)
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
   });

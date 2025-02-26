@@ -1,13 +1,11 @@
 import axios from "axios";
-import { baseURL } from "../baseurl/api";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { TRANSACTIONS } from "../components/transactionData";
 import { INVESTMENTDATA } from "../components/investmentData";
 
 export const GlobalContext = createContext({});
 
 const ComponentProvider = ({ children }) => {
-  const [account, setCount] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [invest, setInvest] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,23 +17,9 @@ const ComponentProvider = ({ children }) => {
     setOpenSidebarToggle(!openSidebarToggle);
   };
 
-  const fetchAccountBalance = async () => {
-    try {
-      const response = await axios.get(`${baseURL}/posts`);
-      setCount(response.data);
-    } catch (error) {
-      setError(error);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    fetchAccountBalance();
-  }, []);
-
   const fetchTransactions = async () => {
     try {
+      setLoading(true)
       const response = await axios.get(TRANSACTIONS);
       setTransactions(response.config.url);
     } catch (error) {
@@ -48,9 +32,9 @@ const ComponentProvider = ({ children }) => {
  
   const fetchInvestments = async () => {
     try {
+      setLoading(true)
       const response = await axios.get(INVESTMENTDATA);
       setInvest(response.config.url);
-    //   console.log(response)
     } catch (error) {
       setError(error);
       console.log(error);
@@ -62,11 +46,11 @@ const ComponentProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        account,
         transactions,
         invest,
         loading,
         error,
+        setTransactions,
         openSidebarToggle,
         OpenSidebar,
         fetchTransactions,

@@ -1,42 +1,41 @@
-// import axios from 'axios';
-// import { fetchTransactions } from './yourModule'; // Replace with the actual file path
+import { renderHook, act } from "@testing-library/react";
+import { useState } from "react";
+import { describe, expect, test } from "vitest";
 
-// import { useContext } from 'react';
-// import { GlobalContext } from '../context/datacontext';
-// import { parse } from 'node-html-parser';
-// const useContext = require('react');
-// const axios = require('axios');
-// const GlobalContext = require('../context/datacontext');
+const useTheme = () => {
+  const [theme, setTheme] = useState("light");
+  
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
-// jest.mock('axios');
+  return { theme, toggleTheme };
+};
 
-// describe('fetchTransactions', () => {
-//   let setTransactions, setError, setLoading;
-//   const {fetchTransactions} = useContext(GlobalContext)
-//   beforeEach(() => {
-//     setTransactions = jest.fn();
-//     setError = jest.fn();
-//     setLoading = jest.fn();
-//   });
+describe("useTheme hook", () => {
+  test("should toggle theme from light to dark", () => {
+    const { result } = renderHook(() => useTheme());
+    expect(result.current.theme).toBe("light");
 
-//   it('should fetch transactions successfully', async () => {
-//     const mockResponse = { config: { url: 'mocked_url' } };
-//     axios.get.mockResolvedValue(mockResponse);
+    act(() => {
+      result.current.toggleTheme();
+    });
+    
+    expect(result.current.theme).toBe("dark");
+  });
 
-//     await fetchTransactions();
+  test("should toggle theme from dark to light", () => {
+    const { result } = renderHook(() => useTheme());
+    
+    act(() => {
+      result.current.toggleTheme();
+    });
+    expect(result.current.theme).toBe("dark");
 
-//     expect(axios.get).toHaveBeenCalledWith(TRANSACTIONS);
-//     expect(setTransactions).toHaveBeenCalledWith('mocked_url');
-//     expect(setLoading).toHaveBeenCalledWith(false);
-//   });
-
-//   it('should handle errors correctly', async () => {
-//     const mockError = new Error('Network Error');
-//     axios.get.mockRejectedValue(mockError);
-
-//     await fetchTransactions();
-
-//     expect(setError).toHaveBeenCalledWith(mockError);
-//     expect(setLoading).toHaveBeenCalledWith(false);
-//   });
-// });
+    act(() => {
+      result.current.toggleTheme();
+    });
+    
+    expect(result.current.theme).toBe("light");
+  });
+});
